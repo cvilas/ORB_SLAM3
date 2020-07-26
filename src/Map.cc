@@ -20,6 +20,8 @@
 #include "Map.h"
 
 #include<mutex>
+#include<opencv2/imgproc/imgproc_c.h>
+#include<opencv2/imgcodecs/legacy/constants_c.h> 
 
 namespace ORB_SLAM3
 {
@@ -495,7 +497,7 @@ void Map::printReprojectionError(list<KeyFrame*> &lpLocalWindowKFs, KeyFrame* mp
     for(KeyFrame* pKFi : lpLocalWindowKFs)
     {
         //cout << "KF " << pKFi->mnId << endl;
-        cv::Mat img_i = cv::imread(pKFi->mNameFile, CV_LOAD_IMAGE_UNCHANGED);
+        cv::Mat img_i = cv::imread(pKFi->mNameFile, cv::IMREAD_UNCHANGED);
         //cout << "Image -> " << img_i.cols << ", " << img_i.rows << endl;
         cv::cvtColor(img_i, img_i, CV_GRAY2BGR);
         //cout << "Change of color in the image " << endl;
